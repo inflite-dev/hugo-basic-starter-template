@@ -1,0 +1,13 @@
+body {
+    margin: 0 auto;
+    max-width: min(48rem, calc(100% - 4rem));
+}
+
+a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+a:hover {
+    text-decoration: underline;
+}
