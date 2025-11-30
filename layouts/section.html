@@ -1,8 +1,13 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ range .Pages }}
-    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ .Summary }}
-  {{ end }}
+
+  {{- partial "pages-list-item.html" (dict "page" . "titleElement" "h1") -}}
+
+  {{- if .Content }}
+    <div class="section-content">
+        {{ .Content }}
+    </div>
+    ---
+  {{- end }}
+  {{- partial "section-pages-list.html" (dict "page" .) }}
+
 {{ end }}
