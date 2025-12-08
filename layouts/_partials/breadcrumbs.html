@@ -1,0 +1,24 @@
+{{- /*
+Renders breadcrumb navigation for the given page.
+
+@context {page} page The current page.
+@context {string} separator The string used to separate breadcumbs items.
+Defaults to ">".
+
+@example: {{ partial "breadcrumbs.html" (dict "page" .) }}
+@example: {{ partial "breadcrumbs.html" (dict "page" . "separator" "/") }}
+*/}}
+
+{{ $page := .page }}
+{{- $separator := default ">" .separator }}
+
+<div class="breadcrumbs">
+  <div class="breadcrumbs-items">
+      {{ $list := ($page.Ancestors.Reverse) }}
+      {{ $len := (len $list) }}
+      {{ range $index, $element := $list }}
+        <span class="breadcrumbs-separator"> {{ $separator }} </span>
+        <span class="breadcrumbs-item"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span>
+      {{ end }}
+  </div>
+</div>

@@ -1,13 +1,22 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  <h2>{{ .Description | markdownify }}</h2>
 
-  {{ $dateMachine := .Date | time.Format "2006-01-02" }}
-  {{ $dateHuman := .Date | time.Format ":date_long" }}
-  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+    {{ partial "breadcrumbs.html" (dict "page" .) }}
 
-  <div class="page-content">
-      {{ .Content }}
-  </div>
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+    <div class="page-header">
+      <h1>{{ .Title }}</h1>
+      <h2>{{ .Description | markdownify }}</h2>
+
+        {{ $dateMachine := .Date | time.Format "2006-01-02" }}
+        {{ $dateHuman := .Date | time.Format ":date_long" }}
+      <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+    </div>
+
+    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+
+    ---
+
+    <div class="page-content">
+        {{ .Content }}
+    </div>
+
 {{ end }}
