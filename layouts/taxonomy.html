@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-    {{- partial "pages-list-item.html" (dict "page" . "titleElement" "h1") -}}
+    {{ partial "pages-list-item.html" (dict "page" . "titleElement" "h1") }}
 
     {{- if .Content }}
       <div class="taxonomy-content">
@@ -8,6 +8,6 @@
       </div>
       ---
     {{- end }}
-    {{- partial "taxonomy-pages-list.html" (dict "page" .) }}
+    {{ partial "taxonomy-pages-list.html" (dict "page" .) }}
 
 {{ end }}
