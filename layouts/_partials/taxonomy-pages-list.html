@@ -8,14 +8,13 @@ Renders a list of direction child Sections, then RegularPages for a Hugo section
 
 {{- $page := .page }}
 <div class="taxonomy-terms-list">
-
-    {{- if $page.Pages }}
+    {{ if $page.Pages }}
       <div class="terms-list">
         <ul>
-            {{- range sort $page.Pages ".Params.weight" }}
+            {{ range sort $page.Pages ".Params.weight" }}
               <li>{{ partial "pages-list-item.html" (dict "page" . "titleElement" "h3") }}</li>
-            {{- end }}
+            {{ end }}
         </ul>
       </div>
-    {{- end }}
+    {{ end }}
 </div>

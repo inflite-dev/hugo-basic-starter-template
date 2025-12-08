@@ -13,12 +13,12 @@ Defaults to "h2", as there is likely already an h1 as the title on the page or a
 {{- $titleElement := default "h2" .titleElement }}
 {{- with . }}
   <div class="pages-list-item">
-    {{- $titleOpenTag := printf "<%s class=\"pages-list-item-title\">" $titleElement | safeHTML }}
-    {{- $titleCloseTag := printf "</%s>" $titleElement | safeHTML }}
-    {{ $titleOpenTag }}<a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>{{ $titleCloseTag }}
+      {{- $titleOpenTag := printf "<%s class=\"pages-list-item-title\">" $titleElement | safeHTML }}
+      {{- $titleCloseTag := printf "</%s>" $titleElement | safeHTML }}
+      {{ $titleOpenTag }}<a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>{{ $titleCloseTag }}
 
-    {{- if $page.Description }} <!-- TODO allow description tag to be configured? -->
+      {{- if $page.Description }} <!-- TODO allow description tag to be configured? -->
       <div class="pages-list-item-description">{{ $page.Description | markdownify }}</div>
-    {{- end }}
+      {{- end }}
   </div>
 {{- end }}
