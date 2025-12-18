@@ -17,8 +17,10 @@ Defaults to ">".
       {{ $list := ($page.Ancestors.Reverse) }}
       {{ $len := (len $list) }}
       {{ range $index, $element := $list }}
-        <span class="breadcrumbs-separator"> {{ $separator }} </span>
         <span class="breadcrumbs-item"><a href="{{ .RelPermalink }}">{{ .Title }}</a></span>
+        {{ if ne (add $index 1) $len }}
+        <span class="breadcrumbs-separator"> {{ $separator }} </span>
+        {{ end }}
       {{ end }}
   </div>
 </div>
