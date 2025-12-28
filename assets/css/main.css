@@ -35,6 +35,14 @@ main pre {
     padding: 1rem;
 }
 
+main code {
+    background-color: rgb(240, 240, 240);
+}
+
+main blockquote, main pre  {
+   overflow: auto;
+}
+
 footer {
     margin: 1rem 0;
 }
