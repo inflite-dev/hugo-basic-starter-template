@@ -46,3 +46,8 @@ main blockquote, main pre  {
 footer {
     margin: 1rem 0;
 }
+
+.pages-list-item-description {
+    font-weight: normal;
+    font-style: italic;
+}
