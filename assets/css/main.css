@@ -1,10 +1,142 @@
-body {
-    margin: 0 auto;
-    max-width: min(48rem, calc(100% - 4rem));
+html {
+    /* Theme color definitions */
+    --color-light-bg: #FFF;
+    --color-light-text: #111;
+    --color-light-code: #111;
+    --color-light-code-bg: #EEE;
+    --color-dark-bg: #111;
+    --color-dark-text: #FFF;
+    --color-dark-code: #FFF;
+    --color-dark-code-bg: #222;
+
+    /* Default theme (light) */
+    --background-color: var(--color-light-bg);
+    --text-color: var(--color-light-text);
+    --code-background-color: var(--color-light-code-bg);
+    --darkmode: 0;
+
+    /* Apply default */
+    background-color: var(--background-color);
+    color: var(--text-color);
+
+    a {
+        color: var(--text-color);
+    }
+
+    main code {
+        color: var(--color-light-code);
+        background-color: var(--color-light-code-bg);
+    }
+
+    main pre code {
+        color: var(--color-light-code);
+        background-color: var(--color-light-code-bg);
+    }
+
+    .color-scheme-icon-light {
+        display: inline;
+    }
+
+    .color-scheme-icon-dark {
+        display: none;
+    }
+
+    font-family: system-ui;
 }
 
-a {
-    color: rgb(0, 0, 0);
+/*
+Auto mode - Dark when system prefers dark.
+This media query is evaluated continuously.
+
+The html:has selectors for color scheme may not evaluate on page load; apply by default
+and allow the specificity of the :has selectors for (light|dark):checked to override it.
+
+This implicitly takes effect again when the "auto" option is checked
+as the :has selectors for (light|dark):checked will be false.
+*/
+@media (prefers-color-scheme: dark) {
+    html {
+        --background-color: var(--color-dark-bg);
+        --text-color: var(--color-dark-text);
+        --code-background-color: var(--color-dark-code-bg);
+        --darkmode: 1;
+
+        main code {
+            color: var(--color-dark-code);
+            background-color: var(--color-dark-code-bg);
+        }
+
+
+        main pre code {
+            /* For now, code highlight theme applied to pre tags
+            is still light regardless of color scheme selection;
+            Ensure text color not set by theme still contrasts light background. */
+            color: var(--color-light-code);
+        }
+
+        .color-scheme-icon-light {
+            display: none;
+        }
+
+        .color-scheme-icon-dark {
+            display: inline;
+        }
+    }
+}
+
+/*
+Manual overrides take precedence due to selector specificity
+*/
+html:has(#color-scheme-selector-light:checked) {
+    --background-color: var(--color-light-bg);
+    --text-color: var(--color-light-text);
+    --code-background-color: var(--color-light-code-bg);
+    --darkmode: 0;
+
+    main code {
+        color: var(--color-light-code);
+        background-color: var(--color-light-code-bg);
+    }
+
+    main pre code {
+        color: var(--color-light-code);
+        background-color: var(--color-light-code-bg);
+    }
+
+    .color-scheme-icon-light {
+        display: inline;
+    }
+
+    .color-scheme-icon-dark {
+        display: none;
+    }
+}
+
+html:has(#color-scheme-selector-dark:checked) {
+    --background-color: var(--color-dark-bg);
+    --text-color: var(--color-dark-text);
+    --code-background-color: var(--color-dark-code-bg);
+    --darkmode: 1;
+
+    main pre code {
+        /* For now, code highlight theme applied to pre tags
+        is still light regardless of color scheme selection;
+        Ensure text color not set by theme still contrasts light background. */
+        color: var(--color-light-code);
+    }
+
+    .color-scheme-icon-light {
+        display: none;
+    }
+
+    .color-scheme-icon-dark {
+        display: inline;
+    }
+}
+
+body {
+    margin: 0 auto;
+    max-width: min(40rem, calc(100% - 4rem));
 }
 
 nav a, :is(h1, h2, h3, h4, h5, h6) a {
@@ -23,6 +155,37 @@ nav {
     margin: 0 1rem 0 0;
 }
 
+.header {
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#color-scheme-selector {
+    border: none;
+    display: inline-flex;
+    margin: 0;
+    padding: 0;
+}
+
+.color-scheme-option {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center horizontally */
+    padding: 0.1rem; /* Increase click area */
+}
+
+/* Hide the actual radio buttons for better layout and visual appeal,
+and because the built-in browser styles are difficult to override. */
+.color-scheme-option input[type="radio"] {
+    display: none;
+    /* Uncomment when displaying inputs
+    to override built-in margin & align with labels */
+    /*margin: 0.1rem;*/
+}
+
 .terms {
     margin: 1rem 0;
 }
@@ -36,11 +199,11 @@ main pre {
 }
 
 main code {
-    background-color: rgb(240, 240, 240);
+    font-size: inherit;
 }
 
-main blockquote, main pre  {
-   overflow: auto;
+main blockquote, main pre {
+    overflow: auto;
 }
 
 footer {
