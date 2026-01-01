@@ -3,11 +3,11 @@ html {
     --color-light-bg: #FFF;
     --color-light-text: #111;
     --color-light-code: #111;
-    --color-light-code-bg: #EEE;
+    --color-light-code-bg: #DDD;
     --color-dark-bg: #111;
     --color-dark-text: #FFF;
     --color-dark-code: #FFF;
-    --color-dark-code-bg: #222;
+    --color-dark-code-bg: #333;
 
     /* Default theme (light) */
     --background-color: var(--color-light-bg);
@@ -42,6 +42,10 @@ html {
     }
 
     font-family: system-ui;
+
+    code {
+        font-family: monospace;
+    }
 }
 
 /*
@@ -65,7 +69,6 @@ as the :has selectors for (light|dark):checked will be false.
             color: var(--color-dark-code);
             background-color: var(--color-dark-code-bg);
         }
-
 
         main pre code {
             /* For now, code highlight theme applied to pre tags
@@ -117,6 +120,11 @@ html:has(#color-scheme-selector-dark:checked) {
     --text-color: var(--color-dark-text);
     --code-background-color: var(--color-dark-code-bg);
     --darkmode: 1;
+
+    main code {
+        color: var(--color-dark-code);
+        background-color: var(--color-dark-code-bg);
+    }
 
     main pre code {
         /* For now, code highlight theme applied to pre tags
@@ -194,12 +202,17 @@ main {
     margin: 2rem 0 1rem 0;
 }
 
+
+main code {
+    font-size: 1rem;
+}
+
 main pre {
     padding: 1rem;
 }
 
-main code {
-    font-size: inherit;
+main pre code {
+    font-size: 0.75rem;
 }
 
 main blockquote, main pre {
@@ -213,4 +226,10 @@ footer {
 .pages-list-item-description {
     font-weight: normal;
     font-style: italic;
+
+    code {
+        /* Improve visual differentiation of monospaced font;
+        italics do not look great in most monospaced fonts anyway*/
+        font-style: normal;
+    }
 }
