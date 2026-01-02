@@ -1,3 +1,7 @@
+
+# Do not transform section titles, e.g. tag "NPM" would be transformed to "Npm" by default
+titleCaseStyle = "none"
+
 [params]
 [params.site]
 [params.site.title]
