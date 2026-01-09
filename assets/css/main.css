@@ -25,9 +25,6 @@ html {
     https://stackoverflow.com/questions/20924039/wrong-font-size-when-using-float-right-in-css-on-mobile-safari/22417120#22417120
     It seems from TailwindCSS' approach that only WebKit (iOS/Safari) needs this, but apply to all.
      */
-    text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    -moz-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
 
     a {
