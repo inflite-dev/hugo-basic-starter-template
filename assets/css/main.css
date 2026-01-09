@@ -19,6 +19,17 @@ html {
     background-color: var(--background-color);
     color: var(--text-color);
 
+    font-family: system-ui;
+
+    /*
+    https://stackoverflow.com/questions/20924039/wrong-font-size-when-using-float-right-in-css-on-mobile-safari/22417120#22417120
+    It seems from TailwindCSS' approach that only WebKit (iOS/Safari) needs this, but apply to all.
+     */
+    text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+
     a {
         color: var(--text-color);
     }
@@ -41,8 +52,6 @@ html {
         display: none;
     }
 
-    font-family: system-ui;
-
     code, pre {
         font-family: monospace;
         /* 1 */
@@ -50,7 +59,7 @@ html {
         /* 2 */
         font-variation-settings: normal;
         /* 3 */
-        font-size: 1em;
+        font-size: 0.8rem;
         /* 4 */
     }
 }
@@ -210,15 +219,11 @@ main {
 }
 
 .content pre {
+    margin-bottom: 1rem;
     padding: 1rem;
 }
 
-.content pre, .content code{
-    font-size: 0.8rem;
-    overflow: auto;
-}
-
-main blockquote, main pre {
+.content blockquote, .content pre {
     overflow: auto;
 }
 
