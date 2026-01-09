@@ -202,17 +202,12 @@ main {
     margin: 2rem 0 1rem 0;
 }
 
-
-main code {
-    font-size: 1rem;
-}
-
-main pre {
+.content pre {
     padding: 1rem;
 }
 
-main pre code {
-    font-size: 0.75rem;
+.content pre, .content code{
+    font-size: 0.8rem;
 }
 
 main blockquote, main pre {
