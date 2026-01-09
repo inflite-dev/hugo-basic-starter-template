@@ -43,8 +43,15 @@ html {
 
     font-family: system-ui;
 
-    code {
+    code, pre {
         font-family: monospace;
+        /* 1 */
+        font-feature-settings: normal;
+        /* 2 */
+        font-variation-settings: normal;
+        /* 3 */
+        font-size: 1em;
+        /* 4 */
     }
 }
 
@@ -208,6 +215,7 @@ main {
 
 .content pre, .content code{
     font-size: 0.8rem;
+    overflow: auto;
 }
 
 main blockquote, main pre {
